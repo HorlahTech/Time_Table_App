@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Time Table App</string>
+    <string name="course">Course</string>
+    <string name="course_title">Course Title:</string>
+    <string name="exam_day">Select Exam Date</string>
+    <string name="exam_time">Select Exam Time</string>
+    <string name="exam_course">Select Course</string>
+    <string name="exam_venue">Select Venue</string>
+    <string name="exam_semester">Select Semester</string>
+    <string name="exam_year">Enter Exam Session</string>
+</resources>
