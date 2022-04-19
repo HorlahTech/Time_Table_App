@@ -242,13 +242,18 @@ public class ExamSchedule extends AppCompatActivity {
         }
         return true;
     }
-//////Code to Insert Exam Schedule data to database/////
-    public void insertExamData() {
+    public void submitForm () {
         /////Code to check if the Exam Session Input is correct//////
         String e_year = exam_year.getText().toString();
         if (!validate(e_year, exam_year, layoutexamsession)) {
+            return;
+        }
+    }
+//////Code to Insert Exam Schedule data to database/////
+    public void insertExamData() {
 
 
+submitForm();
             TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
             SQLiteDatabase db = timeTabledbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
@@ -258,10 +263,9 @@ public class ExamSchedule extends AppCompatActivity {
             values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, String.valueOf(exam_venue));
             values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, String.valueOf(exam_semester));
             values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, String.valueOf(exam_semester));
-            long newRowId = db.insert(TImeTableContract.ExamScheduleEntry.TABLE_NAME, null, values);
+            long newRowId = db.insert(TImeTableContract.CourseEntry.TABLE_NAME, null, values);
             Log.v("Register", "New RoW Id" +newRowId );
 
 
         }
     }
-}
