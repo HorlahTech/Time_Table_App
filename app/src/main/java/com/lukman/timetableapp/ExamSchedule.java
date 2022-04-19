@@ -247,18 +247,18 @@ public class ExamSchedule extends AppCompatActivity {
         /////Code to check if the Exam Session Input is correct//////
         String e_year = exam_year.getText().toString();
         if (!validate(e_year, exam_year, layoutexamsession)) {
-            return;
+
 
             TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
             SQLiteDatabase db = timeTabledbHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, courseTitleString);
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, courseCodeString);
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, courseUnitString);
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, courseNOSString);
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, courseNOSString);
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, courseNOSString);
-            long newRowId = db.insert(TImeTableContract.CourseEntry.TABLE_NAME, null, values);
+            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, String.valueOf(exam_day));
+            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, String.valueOf(exam_time));
+            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, String.valueOf(course));
+            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, String.valueOf(exam_venue));
+            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, String.valueOf(exam_semester));
+            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, String.valueOf(exam_semester));
+            long newRowId = db.insert(TImeTableContract.ExamScheduleEntry.TABLE_NAME, null, values);
             Log.v("Register", "New RoW Id" +newRowId );
 
 
