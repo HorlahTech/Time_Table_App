@@ -6,16 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="@dimen/pardinTopAndDown"-->
-<!--        android:text="@string/course"-->
-<!--        android:textSize="@dimen/textSize"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="@color/PrimaryColor"-->
 
-<!--  />-->
     <ExpandableListView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/expandable_listView"

@@ -94,8 +94,8 @@ public class ExamSchedule extends AppCompatActivity {
         course.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, item);
+                String item1 = adapterView.getItemAtPosition(position).toString();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, item1);
 
             }
         });
@@ -105,8 +105,8 @@ public class ExamSchedule extends AppCompatActivity {
         exam_venue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, item);
+                String item2 = adapterView.getItemAtPosition(position).toString();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, item2);
             }
         });
         exam_semester = findViewById(R.id.exam_semester);
@@ -115,8 +115,8 @@ public class ExamSchedule extends AppCompatActivity {
         exam_semester.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, item);
+                String item3 = adapterView.getItemAtPosition(position).toString();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, item3);
 
             }
         });
@@ -127,9 +127,9 @@ public class ExamSchedule extends AppCompatActivity {
         exam_time.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, item);
-                Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+                String item4 = adapterView.getItemAtPosition(position).toString();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, item4);
+                Toast.makeText(getApplicationContext(), "Item: " + item4, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -275,7 +275,7 @@ submitForm();
         values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, e_year);
         long newRowId = db.insert(TImeTableContract.ExamScheduleEntry.TABLE_NAME, null, values);
         e_year = exam_year.getText().toString();
-          Log.v("ExamSchedule", "New RoW Id" + newRowId );
+          Log.v("ExamSchedule", "New RoW Id " + newRowId );
 
 
         }

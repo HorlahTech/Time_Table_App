@@ -73,7 +73,7 @@ public String  sChild;
         String sGroup = String.valueOf(getGroup(i));
         textView.setText(sGroup);
        textView.setTypeface(null, Typeface.BOLD);
-        textView.setTextColor(Color.parseColor("#FF8080"));
+        textView.setTextColor(Color.parseColor("#006634"));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
         return view;
@@ -86,6 +86,8 @@ public String  sChild;
         TextView textView = view.findViewById(android.R.id.text1);
          sChild = String.valueOf(getChild(i, i1));
         textView.setText(sChild);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        textView.setPadding(200, 0,0, 0);
         return view;
     }
     @Override
