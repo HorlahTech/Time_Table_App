@@ -13,7 +13,7 @@ import com.lukman.timetableapp.EditActivity;
 public class TimeTabledbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = EditActivity.class.getSimpleName();
     public static final String DATABASE_NAME = "TimeTable.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public TimeTabledbHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -45,10 +45,21 @@ public class TimeTabledbHelper extends SQLiteOpenHelper {
                 + TImeTableContract.DepartmentEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TImeTableContract.DepartmentEntry.COLUMN_DEPT_NAME+ " TEXT NOT NULL " + ");";
 
+        String SQL_CREATE_EXAMSCHEDULE_ENTRIES = "CREATE TABLE " + TImeTableContract.ExamScheduleEntry.TABLE_NAME +"("
+                + TImeTableContract.ExamScheduleEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE+ " TEXT NOT NULL, "
+                + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME+ " TEXT NOT NULL, "
+                + TImeTableContract.ExamScheduleEntry.COLUMN_COURSE+ " TEXT NOT NULL, "
+                + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE+ " TEXT NOT NULL, "
+                + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER+ " TEXT NOT NULL, "
+                + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION+ " TEXT NOT NULL "
+                + ");";
+
         sqLiteDatabase.execSQL(SQL_CREATE_COURSE_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_VENUE_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_TIME_ENTRIES);
         sqLiteDatabase.execSQL(SQL_CREATE_DEPARTMENT_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_CREATE_EXAMSCHEDULE_ENTRIES);
     }
 
     @Override
@@ -57,10 +68,12 @@ public class TimeTabledbHelper extends SQLiteOpenHelper {
         String SQL_DELETE_VENUE_ENTRIES = "DROP TABLE IF EXISTS " + TImeTableContract.VenueEntry.TABLE_NAME;
         String SQL_DELETE_TIME_ENTRIES = "DROP TABLE IF EXISTS " + TImeTableContract.TimeEntry.TABLE_NAME;
         String SQL_DELETE_DEPARTMRNT_ENTRIES = "DROP TABLE IF EXISTS " + TImeTableContract.DepartmentEntry.TABLE_NAME;
+        String SQL_DELETE_EXAMSCHEDULE_ENTRIES = "DROP TABLE IF EXISTS " + TImeTableContract.DepartmentEntry.TABLE_NAME;
         sqLiteDatabase.execSQL(SQL_DELETE_COURSE_ENTRIES);
         sqLiteDatabase.execSQL(SQL_DELETE_VENUE_ENTRIES);
         sqLiteDatabase.execSQL(SQL_DELETE_TIME_ENTRIES);
         sqLiteDatabase.execSQL(SQL_DELETE_DEPARTMRNT_ENTRIES);
+        sqLiteDatabase.execSQL(SQL_DELETE_EXAMSCHEDULE_ENTRIES);
         onCreate(sqLiteDatabase);
     }
 }

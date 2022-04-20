@@ -45,6 +45,9 @@ public class ExamSchedule extends AppCompatActivity {
     ArrayAdapter<String> examVenueItems;
     ArrayAdapter<String> examSemesterItems;
     MaterialButton materialButton ;
+    SQLiteDatabase db;
+    ContentValues values;
+    String e_year;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,9 @@ public class ExamSchedule extends AppCompatActivity {
         linearExamDate = findViewById(R.id.linear_exam_date);
         exam_year = findViewById(R.id.exam_year);
         layoutexamsession = findViewById(R.id.layoutexamsession);
-
+        TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
+         db = timeTabledbHelper.getWritableDatabase();
+         values = new ContentValues();
 
         exam_day = findViewById(R.id.exam_date);
 
@@ -73,6 +78,8 @@ public class ExamSchedule extends AppCompatActivity {
                         cale.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         String cDate = DateFormat.getDateInstance(DateFormat.FULL).format(cale.getTime());
                         exam_day.setText(cDate);
+                       String fExamDay = exam_day.getText().toString();
+                        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, fExamDay);
                     }
                 }, year, month, day);
                 //datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
@@ -88,7 +95,8 @@ public class ExamSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String item = adapterView.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, item);
+
             }
         });
         exam_venue = findViewById(R.id.exam_venue);
@@ -98,7 +106,7 @@ public class ExamSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String item = adapterView.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, item);
             }
         });
         exam_semester = findViewById(R.id.exam_semester);
@@ -108,7 +116,8 @@ public class ExamSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String item = adapterView.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, item);
+
             }
         });
         exam_time = findViewById(R.id.exam_time);
@@ -119,6 +128,7 @@ public class ExamSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String item = adapterView.getItemAtPosition(position).toString();
+                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, item);
                 Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
             }
         });
@@ -244,7 +254,7 @@ public class ExamSchedule extends AppCompatActivity {
     }
     public void submitForm () {
         /////Code to check if the Exam Session Input is correct//////
-        String e_year = exam_year.getText().toString();
+         e_year = exam_year.getText().toString();
         if (!validate(e_year, exam_year, layoutexamsession)) {
             return;
         }
@@ -254,17 +264,18 @@ public class ExamSchedule extends AppCompatActivity {
 
 
 submitForm();
-            TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
-            SQLiteDatabase db = timeTabledbHelper.getWritableDatabase();
-            ContentValues values = new ContentValues();
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, String.valueOf(exam_day));
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, String.valueOf(exam_time));
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, String.valueOf(course));
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, String.valueOf(exam_venue));
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, String.valueOf(exam_semester));
-            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, String.valueOf(exam_semester));
-            long newRowId = db.insert(TImeTableContract.CourseEntry.TABLE_NAME, null, values);
-            Log.v("Register", "New RoW Id" +newRowId );
+
+        Toast.makeText(ExamSchedule.this, "values are" + values, Toast.LENGTH_LONG).show();
+//        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, String.valueOf(exam_day));
+//            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, String.valueOf(displayTimeList()));
+//
+//            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, String.valueOf(displayVenueList()));
+//            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, String.valueOf(exam_semester));
+//            values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, String.valueOf(exam_year));
+        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, e_year);
+        long newRowId = db.insert(TImeTableContract.ExamScheduleEntry.TABLE_NAME, null, values);
+        e_year = exam_year.getText().toString();
+          Log.v("ExamSchedule", "New RoW Id" + newRowId );
 
 
         }
