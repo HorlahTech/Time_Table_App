@@ -73,7 +73,7 @@ public String  sChild;
         String sGroup = String.valueOf(getGroup(i));
         textView.setText(sGroup);
        textView.setTypeface(null, Typeface.BOLD);
-        textView.setTextColor(Color.parseColor("#006634"));
+                                        textView.setTextColor(Color.parseColor("#006634"));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
 
         return view;

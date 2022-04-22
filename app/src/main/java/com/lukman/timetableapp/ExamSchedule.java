@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -61,54 +62,17 @@ public class ExamSchedule extends AppCompatActivity {
          values = new ContentValues();
 
         exam_day = findViewById(R.id.exam_date);
-
-        Calendar calendar = Calendar.getInstance();
-        final int year = calendar.get(Calendar.YEAR);
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        linearExamDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(ExamSchedule.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        Calendar cale = Calendar.getInstance();
-                        cale.set(Calendar.YEAR, year);
-                        cale.set(Calendar.MONTH, month);
-                        cale.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        String cDate = DateFormat.getDateInstance(DateFormat.FULL).format(cale.getTime());
-                        exam_day.setText(cDate);
-                       String fExamDay = exam_day.getText().toString();
-                        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, fExamDay);
-                    }
-                }, year, month, day);
-                //datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
-                datePickerDialog.show();
-            }
-        });
-
+            DateTask dateTask = new DateTask();
+                dateTask.execute();
 
         course = findViewById(R.id.course);
-        courseItems = new ArrayAdapter<String>(this, R.layout.dropdown_list, displayCourseList());
-        course.setAdapter(courseItems);
-        course.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item1 = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, item1);
+        CourseTask courseTask = new CourseTask();
+        courseTask.execute();
 
-            }
-        });
         exam_venue = findViewById(R.id.exam_venue);
-        examVenueItems = new ArrayAdapter<String>(this, R.layout.dropdown_list, displayVenueList());
-        exam_venue.setAdapter(examVenueItems);
-        exam_venue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item2 = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, item2);
-            }
-        });
+        VenuesTask venuesTask = new VenuesTask();
+        venuesTask.execute();
+
         exam_semester = findViewById(R.id.exam_semester);
         examSemesterItems = new ArrayAdapter<String>(this, R.layout.dropdown_list, Semesteritems);
         exam_semester.setAdapter(examSemesterItems);
@@ -121,17 +85,8 @@ public class ExamSchedule extends AppCompatActivity {
             }
         });
         exam_time = findViewById(R.id.exam_time);
-        //examTimeItems = new ArrayAdapter<TimeObject>(this, R.layout.dropdown_list, displayTimeList());
-        examTimeItems = new TimeAdapter(ExamSchedule.this, displayTimeList());
-        exam_time.setAdapter(examTimeItems);
-        exam_time.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String item4 = adapterView.getItemAtPosition(position).toString();
-                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, item4);
-                Toast.makeText(getApplicationContext(), "Item: " + item4, Toast.LENGTH_SHORT).show();
-            }
-        });
+        TimeTask timeTask = new TimeTask();
+        timeTask.execute();
 
     materialButton = findViewById(R.id.exam_Schedule_submit);
     materialButton.setOnClickListener(new View.OnClickListener() {
@@ -141,97 +96,6 @@ public class ExamSchedule extends AppCompatActivity {
         }
     });
     }
-
-    private ArrayList<String> displayVenueList() {
-
-        TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
-        SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
-        String[] Projection = {
-
-                TImeTableContract.VenueEntry.COLUMN_VENUE_NAME,
-        };
-        timeTabledbHelper.getReadableDatabase();
-        ArrayList<String> Venueitems = new ArrayList<>();
-
-        Cursor cursor = db.query(
-                TImeTableContract.VenueEntry.TABLE_NAME,
-                Projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-        while (cursor.moveToNext()) {
-            String v_Name = cursor.getString(0);
-            Venueitems.add(v_Name);
-        }
-
-        cursor.close();
-        return Venueitems;
-    }
-
-    private ArrayList<String> displayCourseList() {
-
-        TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
-        SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
-        String[] Projection = {
-
-                TImeTableContract.CourseEntry.COLUMN_COURSE_TITLE,
-        };
-        timeTabledbHelper.getReadableDatabase();
-        ArrayList<String> Courseitems = new ArrayList<>();
-
-        Cursor cursor = db.query(
-                TImeTableContract.CourseEntry.TABLE_NAME,
-                Projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-        while (cursor.moveToNext()) {
-            String c_Title = cursor.getString(0);
-            Courseitems.add(c_Title);
-        }
-
-        cursor.close();
-        return Courseitems;
-    }
-
-    ////code to display time in the drop  down from the database/////
-    private ArrayList<TimeObject> displayTimeList() {
-
-        TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
-        SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
-        String[] Projection = {
-
-                TImeTableContract.TimeEntry.COLUMN_START_TIME,
-                TImeTableContract.TimeEntry.COLUMN_STOP_TIME,
-        };
-        timeTabledbHelper.getReadableDatabase();
-        ArrayList<TimeObject> Timeitems = new ArrayList<>();
-
-        Cursor cursor = db.query(
-                TImeTableContract.TimeEntry.TABLE_NAME,
-                Projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-        while (cursor.moveToNext()) {
-            String T_Start = cursor.getString(0);
-            String T_Stop = cursor.getString(1);
-            Timeitems.add(new TimeObject(T_Start, T_Stop));
-        }
-
-        cursor.close();
-        return Timeitems;
-    }
-
     /////////request focus////////
     public void requestfocus(View view) {
         if (view.requestFocus()) {
@@ -278,5 +142,189 @@ submitForm();
           Log.v("ExamSchedule", "New RoW Id " + newRowId );
 
 
+        }
+        public class TimeTask extends AsyncTask< Void, Void, ArrayList<TimeObject>>{
+
+
+
+            @Override
+            protected ArrayList<TimeObject> doInBackground(Void... voids) {
+                TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(ExamSchedule.this);
+                SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
+                String[] Projection = {
+
+                        TImeTableContract.TimeEntry.COLUMN_START_TIME,
+                        TImeTableContract.TimeEntry.COLUMN_STOP_TIME,
+                };
+                timeTabledbHelper.getReadableDatabase();
+                ArrayList<TimeObject> Timeitems = new ArrayList<>();
+
+                Cursor cursor = db.query(
+                        TImeTableContract.TimeEntry.TABLE_NAME,
+                        Projection,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+                while (cursor.moveToNext()) {
+                    String T_Start = cursor.getString(0);
+                    String T_Stop = cursor.getString(1);
+                    Timeitems.add(new TimeObject(T_Start, T_Stop));
+                }
+
+                cursor.close();
+                return Timeitems;
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<TimeObject> v) {
+                //examTimeItems = new ArrayAdapter<TimeObject>(this, R.layout.dropdown_list, displayTimeList());
+                examTimeItems = new TimeAdapter(ExamSchedule.this, v);
+                exam_time.setAdapter(examTimeItems);
+                exam_time.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        String item4 = adapterView.getItemAtPosition(position).toString();
+                        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, item4);
+                        Toast.makeText(getApplicationContext(), "Item: " + item4, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+        public class CourseTask extends AsyncTask< Void, Void, ArrayList<String>>{
+
+
+
+            @Override
+            protected ArrayList<String> doInBackground(Void... voids) {
+                TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(ExamSchedule.this);
+                SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
+                String[] Projection = {
+
+                        TImeTableContract.CourseEntry.COLUMN_COURSE_TITLE,
+                };
+                timeTabledbHelper.getReadableDatabase();
+                ArrayList<String> Courseitems = new ArrayList<>();
+
+                Cursor cursor = db.query(
+                        TImeTableContract.CourseEntry.TABLE_NAME,
+                        Projection,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+                while (cursor.moveToNext()) {
+                    String c_Title = cursor.getString(0);
+                    Courseitems.add(c_Title);
+                }
+
+                cursor.close();
+                return Courseitems;
+            }
+
+            @Override
+            public void onPostExecute(ArrayList<String> v) {
+                courseItems = new ArrayAdapter<String>(ExamSchedule.this, R.layout.dropdown_list, v);
+                course.setAdapter(courseItems);
+                course.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        String item1 = adapterView.getItemAtPosition(position).toString();
+                        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, item1);
+
+                    }
+                });
+            }
+        }
+        public class VenuesTask extends AsyncTask< Void, Void, ArrayList<String>>{
+
+
+
+            @Override
+            protected ArrayList<String> doInBackground(Void... voids) {
+                TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(ExamSchedule.this);
+                SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
+                String[] Projection = {
+
+                        TImeTableContract.VenueEntry.COLUMN_VENUE_NAME,
+                };
+                timeTabledbHelper.getReadableDatabase();
+                ArrayList<String> Venueitems = new ArrayList<>();
+
+                Cursor cursor = db.query(
+                        TImeTableContract.VenueEntry.TABLE_NAME,
+                        Projection,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+                );
+                while (cursor.moveToNext()) {
+                    String v_Name = cursor.getString(0);
+                    Venueitems.add(v_Name);
+                }
+
+                cursor.close();
+                return Venueitems;
+            }
+
+
+
+            @Override
+            public void onPostExecute(ArrayList<String> v) {
+                examVenueItems = new ArrayAdapter<String>(ExamSchedule.this, R.layout.dropdown_list, v);
+                exam_venue.setAdapter(examVenueItems);
+                exam_venue.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        String item2 = adapterView.getItemAtPosition(position).toString();
+                        values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, item2);
+                    }
+                });
+            }
+        }
+        public class DateTask extends AsyncTask<Void, Void,String>{
+            String cDate;
+
+//            @Override
+//            protected void onPreExecute() {
+//
+//            }
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            protected String doInBackground(Void... voids) {
+                Calendar calendar = Calendar.getInstance();
+                final int year = calendar.get(Calendar.YEAR);
+                final int month = calendar.get(Calendar.MONTH);
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                linearExamDate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        DatePickerDialog datePickerDialog = new DatePickerDialog(ExamSchedule.this, new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                                Calendar cale = Calendar.getInstance();
+                                cale.set(Calendar.YEAR, year);
+                                cale.set(Calendar.MONTH, month);
+                                cale.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                                cDate = DateFormat.getDateInstance(DateFormat.FULL).format(cale.getTime());
+                                exam_day.setText(cDate);
+                                String fExamDay = exam_day.getText().toString();
+                                values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, fExamDay);
+                            }
+                        }, year, month, day);
+                        //datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.LTGRAY));
+                        datePickerDialog.show();
+                    }
+                });
+
+                return cDate;
+            }
         }
     }
