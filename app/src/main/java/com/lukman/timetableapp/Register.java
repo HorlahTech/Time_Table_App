@@ -20,9 +20,9 @@ import com.lukman.timetableapp.data.TimeTabledbHelper;
 
 public class Register extends AppCompatActivity {
     public static final String LOG_TAG = Register.class.getSimpleName();
-public TextInputEditText cTitle, cCode, cUnit, cNOS;
-public TextInputLayout layout_title, layout_code, layout_unit, layout_Nos;
-public Button materialButton;
+    public TextInputEditText cTitle, cCode, cUnit, cNOS;
+    public TextInputLayout layout_title, layout_code, layout_unit, layout_Nos;
+    public Button materialButton;
     String courseTitleString, courseCodeString,courseUnitString, courseNOSString;
 
     @Override
@@ -37,21 +37,21 @@ public Button materialButton;
         layout_unit.setHint("Enter Course Unit");
         layout_Nos = findViewById(R.id.layoutnoofstd);
         layout_Nos.setHint("Enter the Number of Student");
-       cTitle = findViewById(R.id.coursetitle);
+        cTitle = findViewById(R.id.coursetitle);
         courseTitleString = cTitle.getText().toString().trim();
         cCode = findViewById(R.id.coursecode);
-         courseCodeString = cCode.getText().toString().trim();
+        courseCodeString = cCode.getText().toString().trim();
         cUnit = findViewById(R.id.courseunit);
-         courseUnitString = cUnit.getText().toString().trim();
+        courseUnitString = cUnit.getText().toString().trim();
         cNOS = findViewById(R.id.numberofstudent);
-         courseNOSString = cNOS.getText().toString().trim();
+        courseNOSString = cNOS.getText().toString().trim();
         materialButton = findViewById(R.id.coursesubmit);
         materialButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //Toast.makeText(getApplicationContext(),   courseUnitString+"\n" +courseCodeString, Toast.LENGTH_LONG).show();
-             submitForm();
+                submitForm();
                 cTitle.setText("");
                 cCode.setText("");
                 cUnit.setText("");
@@ -66,7 +66,7 @@ public Button materialButton;
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
     }
-public boolean validate(String input,View txtinputEdit, TextInputLayout layout){
+    public boolean validate(String input,View txtinputEdit, TextInputLayout layout){
         if(input.isEmpty()){
             layout.setError("Please Enter Course");
             requestfocus(txtinputEdit);
@@ -77,25 +77,25 @@ public boolean validate(String input,View txtinputEdit, TextInputLayout layout){
         }else{
             layout.setErrorEnabled(false);
         }
-    return true;
-}
-public void submitForm (){
-    courseTitleString = cTitle.getText().toString().trim() +"";
+        return true;
+    }
+    public void submitForm (){
+        courseTitleString = cTitle.getText().toString().trim() +"";
 
-    courseCodeString = cCode.getText().toString().trim() +"";
+        courseCodeString = cCode.getText().toString().trim() +"";
 
-    courseUnitString = cUnit.getText().toString().trim() +"";
+        courseUnitString = cUnit.getText().toString().trim() +"";
 
-    courseNOSString = cNOS.getText().toString().trim()+"";
+        courseNOSString = cNOS.getText().toString().trim()+"";
 
-if (!validate(courseTitleString, cTitle, layout_title)){
-        return;
-    }else if(!validate(courseCodeString, cCode, layout_code)){
-        return;
+        if (!validate(courseTitleString, cTitle, layout_title)){
+            return;
+        }else if(!validate(courseCodeString, cCode, layout_code)){
+            return;
 
-}
+        }
         insertCourse();
-    Toast.makeText(getApplicationContext(), courseUnitString + "\n" + courseCodeString, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Submitted", Toast.LENGTH_LONG).show();
     }
 
     private void insertCourse() {
@@ -106,8 +106,8 @@ if (!validate(courseTitleString, cTitle, layout_title)){
         values.put(TImeTableContract.CourseEntry.COLUMN_COURSE_CODE, courseCodeString);
         values.put(TImeTableContract.CourseEntry.COLUMN_COURSE_UNIT, courseUnitString);
         values.put(TImeTableContract.CourseEntry.COLUMN_NO_OF_STUDENT, courseNOSString);
-       long newRowId = db.insert(TImeTableContract.CourseEntry.TABLE_NAME, null, values);
-       Log.v("Register", "New RoW Id" +newRowId );
+        long newRowId = db.insert(TImeTableContract.CourseEntry.TABLE_NAME, null, values);
+        Log.v("Register", "New RoW Id" +newRowId );
 
     }
 

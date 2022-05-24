@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DesignSurface">
-    <option name="filePathToZoomLevelMap">
-      <map>
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.22205128205128205" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/timeicon.xml" value="0.22205128205128205" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable/shape.xml" value="0.22205128205128205" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout-v28/activity_register.xml" value="0.1" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_exam_schedule.xml" value="0.25" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_exam_venue.xml" value="0.25" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_set_exam_time.xml" value="0.33" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_view_course.xml" value="0.18" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/course_expandable.xml" value="0.12771739130434784" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/course_expandable_item.xml" value="0.1" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/dropdown_list.xml" value="0.10182370820668693" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/expandable_list_group.xml" value="0.12771739130434784" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/list_courses.xml" value="0.33" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/register.xml" value="0.1" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/time_layout.xml" value="0.25" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22205128205128205" />
-        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22205128205128205" />
-      </map>
-    </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+    <component name="DesignSurface">
+        <option name="filePathToZoomLevelMap">
+            <map>
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.22205128205128205" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/timeicon.xml" value="0.22205128205128205" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable/shape.xml" value="0.22205128205128205" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout-v28/activity_register.xml" value="0.1" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_exam_schedule.xml" value="0.25" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_exam_venue.xml" value="0.25" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_register.xml" value="0.33" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_set_exam_time.xml" value="0.33" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_view_course.xml" value="0.18" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_view_time_table.xml" value="0.33" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/course_expandable.xml" value="0.12771739130434784" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/course_expandable_item.xml" value="0.1" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/dropdown_list.xml" value="0.10182370820668693" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/expandable_list_group.xml" value="0.12771739130434784" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/list_courses.xml" value="0.33" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/register.xml" value="0.1" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/table_list_item.xml" value="0.12817028985507245" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/time_layout.xml" value="0.25" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/menu/download_pdf.xml" value="0.1935185185185185" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22205128205128205" />
+                <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22205128205128205" />
+            </map>
+        </option>
+    </component>
+    <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+        <output url="file://$PROJECT_DIR$/build/classes" />
+    </component>
+    <component name="ProjectType">
+        <option name="id" value="Android" />
+    </component>
+    <component name="SuppressionsComponent">
+        <option name="suppComments" value="[]" />
+    </component>
 </project>

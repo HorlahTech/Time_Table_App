@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent regIntent = new Intent(MainActivity.this, Register.class);
                         startActivity(regIntent);
 
+
                     }else if(sChild =="Edit Course"){
                         Intent regIntent = new Intent(MainActivity.this, EditActivity.class);
                         startActivity(regIntent);
@@ -206,6 +207,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(regIntent);
                     }else if (sChild == "Set Exam Time Table"){
                         Intent regIntent = new Intent(MainActivity.this,ExamSchedule.class);
+                        startActivity(regIntent);
+                    }else if (sChild == "View Exam Time Table"){
+                        Intent regIntent = new Intent(MainActivity.this,ViewTimeTable.class);
                         startActivity(regIntent);
                     }
                     return true;

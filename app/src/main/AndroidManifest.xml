@@ -1,64 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.lukman.timetableapp">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/timetable_schedule_system"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/timetable_schedule_system"
         android:supportsRtl="true"
         android:theme="@style/Theme.TimeTableApp">
         <activity
+            android:name=".ViewTimeTable"
+            android:exported="false"
+            android:label="TimeTable"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".ExamSchedule"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="Set TimeTable"/>
+            android:label="Set TimeTable"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ViewCourseActivity"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            android:label="View Course" />
+            android:label="View Course"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ViewDepartment"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="View Department" />
+            android:label="View Department"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegDepartment"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="Reg Department" />
+            android:label="Reg Department"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ViewVenue"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:label="View Venue" />
+            android:label="View Venue"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SetExamTime"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EditVenue"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            android:label="Edit Venue" />
+            android:label="Edit Venue"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ExamVenue"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
             android:label="Register Venue"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Register"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            android:label="Register Course" />
+            android:label="Register Course"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EditActivity"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            android:label="Edit Course" />
+            android:label="Edit Course"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

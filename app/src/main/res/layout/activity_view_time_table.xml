@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    tools:context=".ViewTimeTable">
+  <LinearLayout
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:orientation="vertical"
+      android:id="@+id/tablevalueId">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="Select Session"
+        android:id="@+id/layoutSelectSession"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+      <AutoCompleteTextView
+          android:id="@+id/SelectSession"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:hint="Select Semester"
+        android:id="@+id/layoutSelectSemester"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+      <AutoCompleteTextView
+          android:id="@+id/SelectSemester"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="none"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        android:layout_margin="12dp"
+        android:id="@+id/tableButton"/>
+
+  </LinearLayout>
+
+
+  <TableLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:stretchColumns="1,2,3"
+      android:visibility="gone"
+      android:id="@+id/tableDataId">
+
+    <TableRow>
+      <TextView
+          android:text="Day"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          android:padding="16dp"
+          android:layout_column="1"/>
+      <TextView
+          android:text="Course"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          android:padding="16dp"
+          android:layout_column="1"/>
+      <TextView
+          android:text="Venue"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          android:padding="16dp"
+          android:layout_column="1"/>
+      <TextView
+          android:text="Time"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          android:padding="16dp"
+          android:layout_column="1"/>
+    </TableRow>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/table_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+  </TableLayout>
+</LinearLayout>

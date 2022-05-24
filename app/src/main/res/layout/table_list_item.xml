@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+  <TableRow>
+    <TextView
+        android:text="Day"
+        android:textSize="18sp"
+        android:id="@+id/table_Day"
+        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:text="Course"
+        android:textSize="18sp"
+        android:id="@+id/table_Course"
+        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:text="Venue"
+        android:textSize="18sp"
+        android:id="@+id/table_Venue"
+        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"/>
+    <TextView
+        android:text="Time"
+        android:textSize="18sp"
+        android:id="@+id/table_Time"
+        android:padding="16dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"/>
+  </TableRow>
+
+</TableLayout>

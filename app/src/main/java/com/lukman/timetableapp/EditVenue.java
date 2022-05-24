@@ -1,5 +1,6 @@
 package com.lukman.timetableapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,18 +26,29 @@ public class EditVenue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_venue);
+        Intent ii = getIntent();///////////intent to get value from edit button
+        String v__IdData = ii.getStringExtra("id");
+        String v__NameData = ii.getStringExtra("course title");
+        String v__LocationData = ii.getStringExtra("course code");
+        String v__DescriptionData = ii.getStringExtra("course unit");
+//        String c__NumberOfData = ii.getStringExtra("course numberOfStudent");
+        ///////////////////////////////
         layout_vname = findViewById(R.id.layoutvname);
-        layout_vname.setHint("Edit Venue Name");
+        layout_vname.setHint("Edit Venue Name");///////venue Name layout hint
         layout_vlocation = findViewById(R.id.layoutvlocation);
-        layout_vlocation.setHint("Edit Venue Location");
+        layout_vlocation.setHint("Edit Venue Location");/////// venue location  layout hint
         layout_vdesc = findViewById(R.id.layoutvdesc);
-        layout_vdesc.setHint("Edit Description");
-
+        layout_vdesc.setHint("Edit Description");///////venue Description  layout hint
+///////////////////////////////////////////////////////////////////
         vName = findViewById(R.id.venuename);
+        vName.setText(v__NameData);
         // courseTitleString = cTitle.getText().toString().trim();
         vLocation = findViewById(R.id.venuelocation);
+        vLocation.setText(v__LocationData);
         //  courseCodeString = cCode.getText().toString().trim();
         vDesc = findViewById(R.id.venuedesc);
+        vDesc.setText(v__DescriptionData);
+
         //  courseUnitString = cUnit.getText().toString().trim();
 
         venueButton = findViewById(R.id.venuesubmit);

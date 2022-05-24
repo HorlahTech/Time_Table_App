@@ -22,24 +22,24 @@ import java.util.ArrayList;
 
 public class TimeAdapter extends ArrayAdapter<TimeObject> {
 
-    public TimeAdapter(@NonNull Context context, ArrayList<TimeObject> time) {
-        super(context, 0, time);
+  public TimeAdapter(@NonNull Context context, ArrayList<TimeObject> time) {
+    super(context, 0, time);
 
-    }
+  }
 
-    @NonNull
-    @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listViewItem = convertView;
-        if( listViewItem==null){
-            listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.time_layout, parent, false);
-        }
-        TimeObject currentWord = getItem(position);
-        TextView start = listViewItem.findViewById(R.id.ttstart);
-        start.setText(currentWord.getTimeStart());
-        TextView stop = listViewItem.findViewById(R.id.ttstop);
-        stop.setText(currentWord.getTimeStop());
-        return listViewItem;
+  @NonNull
+  @Override
+  public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    View listViewItem = convertView;
+    if( listViewItem==null){
+      listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.time_layout, parent, false);
     }
+    TimeObject currentWord = getItem(position);
+    TextView start = listViewItem.findViewById(R.id.ttstart);
+    start.setText(currentWord.getTimeStart());
+    TextView stop = listViewItem.findViewById(R.id.ttstop);
+    stop.setText(currentWord.getTimeStop());
+    return listViewItem;
+  }
 }
 

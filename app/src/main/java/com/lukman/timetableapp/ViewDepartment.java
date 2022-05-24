@@ -45,55 +45,55 @@ import com.lukman.timetableapp.data.TimeTabledbHelper;
 public class ViewDepartment extends AppCompatActivity {
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_course);
-        ListView listView = findViewById(R.id.recycler);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_view_course);
+    ListView listView = findViewById(R.id.recycler);
 //        listView.setLayoutManager( new LinearLayoutManager(this));
 //        listView.setHasFixedSize(true);
 
 
-        ArrayList<CourseData> courseData = displayVenueData();
-        if (courseData.size() > 0) {
-            CourseAdapter Adapter = new CourseAdapter(this, courseData);
-            listView.setAdapter( Adapter);
-        } else {
-            Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
-        }
+    ArrayList<CourseData> courseData = displayVenueData();
+    if (courseData.size() > 0) {
+      CourseAdapter Adapter = new CourseAdapter(this, courseData);
+      listView.setAdapter( Adapter);
+    } else {
+      Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
     }
+  }
 
-    private ArrayList<CourseData> displayVenueData() {
+  private ArrayList<CourseData> displayVenueData() {
 
-        TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
-        SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
-        String[] Projection = {
-                TImeTableContract.DepartmentEntry.COLUMN_ID,
-                TImeTableContract.DepartmentEntry.COLUMN_DEPT_NAME,
+    TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
+    SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
+    String[] Projection = {
+            TImeTableContract.DepartmentEntry.COLUMN_ID,
+            TImeTableContract.DepartmentEntry.COLUMN_DEPT_NAME,
 
-        };
-        timeTabledbHelper.getReadableDatabase();
-        ArrayList<CourseData> saveArrayData = new ArrayList<>();
+    };
+    timeTabledbHelper.getReadableDatabase();
+    ArrayList<CourseData> saveArrayData = new ArrayList<>();
 
-        Cursor cursor = db.query(
-                TImeTableContract.DepartmentEntry.TABLE_NAME,
-                Projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-        if (cursor.moveToFirst()) {
-            do {
-                int id = Integer.parseInt(cursor.getString(0));
-                String DName = cursor.getString(1);
+    Cursor cursor = db.query(
+            TImeTableContract.DepartmentEntry.TABLE_NAME,
+            Projection,
+            null,
+            null,
+            null,
+            null,
+            null
+    );
+    if (cursor.moveToFirst()) {
+      do {
+        int id = Integer.parseInt(cursor.getString(0));
+        String DName = cursor.getString(1);
 
-                saveArrayData.add(new CourseData(id, DName));
+        saveArrayData.add(new CourseData(id, DName));
 
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return saveArrayData;
+      } while (cursor.moveToNext());
     }
+    cursor.close();
+    return saveArrayData;
+  }
 }

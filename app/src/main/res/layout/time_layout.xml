@@ -5,20 +5,20 @@
     android:orientation="horizontal"
     android:layout_gravity="center_horizontal"
     android:padding="10dp">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time Start"
-        android:id="@+id/ttstart"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" - "
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time Stop"
-        android:id="@+id/ttstop"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Time Start"
+      android:id="@+id/ttstart"/>
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text=" - "
+      />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Time Stop"
+      android:id="@+id/ttstop"/>
 
 </LinearLayout>

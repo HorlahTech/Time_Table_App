@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name ="marginTopAndDown">20dp</dimen>
-    <dimen name ="pardinTopAndDown">60dp</dimen>
-    <dimen name ="textSize">25sp</dimen>
+  <dimen name ="marginTopAndDown">20dp</dimen>
+  <dimen name ="pardinTopAndDown">60dp</dimen>
+  <dimen name ="textSize">25sp</dimen>
 </resources>

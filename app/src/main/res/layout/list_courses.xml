@@ -6,30 +6,30 @@
     android:padding="10dp"
     android:orientation="vertical"
     android:layout_gravity="center_horizontal">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
         android:id="@+id/linear_id_title">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/course_title"
-        android:textSize="18sp"
-        android:id="@+id/title_header"
-        android:textStyle="bold"/>
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Course Title:"
-        android:textSize="16sp"
-        android:paddingLeft="10dp"
-            android:id="@+id/course_title"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/course_title"
+          android:textSize="18sp"
+          android:id="@+id/title_header"
+          android:textStyle="bold"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Course Title:"
+          android:textSize="16sp"
+          android:paddingLeft="10dp"
+          android:id="@+id/course_title"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,87 +38,87 @@
         android:orientation="horizontal"
         android:padding="10dp"
         android:id="@+id/linear_id_code">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Course Code:"
-            android:textSize="18sp"
-            android:id="@+id/code_header"
-            android:textStyle="bold"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Course Code"
-            android:textSize="16sp"
-            android:paddingLeft="10dp"
-            android:id="@+id/course_code"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Course Code:"
+          android:textSize="18sp"
+          android:id="@+id/code_header"
+          android:textStyle="bold"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Course Code"
+          android:textSize="16sp"
+          android:paddingLeft="10dp"
+          android:id="@+id/course_code"/>
     </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:id="@+id/linear_id_unit">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Course Unit:"
-                android:id="@+id/unit_header"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Course Unit"
-                android:textSize="16sp"
-                android:paddingLeft="10dp"
-                android:id="@+id/course_unit"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:id="@+id/linear_id_noofstd">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No. Of Student:"
-                android:id="@+id/noofstd_header"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NoOfStd"
-                android:textSize="16sp"
-                android:paddingLeft="10dp"
-                android:id="@+id/course_noofstd"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Edit"
-            android:id="@+id/edit"
-            android:layout_marginEnd="5dp"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Delete"
-            android:id="@+id/delete"
-            android:layout_marginStart="5dp"/>
-        </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:id="@+id/linear_id_unit">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Course Unit:"
+          android:id="@+id/unit_header"
+          android:textSize="18sp"
+          android:textStyle="bold"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Course Unit"
+          android:textSize="16sp"
+          android:paddingLeft="10dp"
+          android:id="@+id/course_unit"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:id="@+id/linear_id_noofstd">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="No. Of Student:"
+          android:id="@+id/noofstd_header"
+          android:textSize="18sp"
+          android:textStyle="bold"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="NoOfStd"
+          android:textSize="16sp"
+          android:paddingLeft="10dp"
+          android:id="@+id/course_noofstd"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+      <Button
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="Edit"
+          android:id="@+id/edit"
+          android:layout_marginEnd="5dp"/>
+      <Button
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:text="Delete"
+          android:id="@+id/delete"
+          android:layout_marginStart="5dp"/>
+    </LinearLayout>
+
+  </LinearLayout>
 
 
 </com.google.android.material.card.MaterialCardView>
