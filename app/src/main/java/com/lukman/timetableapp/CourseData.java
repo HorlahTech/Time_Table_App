@@ -12,6 +12,7 @@ public class CourseData {
     private  String noostd = HASNOOFSTD;
 
     public CourseData(int id,String tittle) {
+        this.id = id;
         this.tittle = tittle;
 
     }

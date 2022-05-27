@@ -55,7 +55,7 @@ public class ViewTimeTable extends AppCompatActivity {
     TableAdapter tableAdapter;
     AutoCompleteTextView select_semester,SelectSession;
     ArrayAdapter selectSemesterItems, sessionItems;
-    String  selectSemester_item3, selectCourse_item1, way;
+    String  selectSemester_item3, selectSession_item1;
     LinearLayout tablevalueId;
     TableLayout tableDataId;
     String[] Semesteritems = {"First Semester", "Second Semester"};
@@ -88,7 +88,7 @@ public class ViewTimeTable extends AppCompatActivity {
         SelectSession.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                selectCourse_item1 = adapterView.getItemAtPosition(position).toString();
+                selectSession_item1 = adapterView.getItemAtPosition(position).toString();
 
 
             }
@@ -180,7 +180,7 @@ public class ViewTimeTable extends AppCompatActivity {
             Projection,
             null,
             null,
-            null,
+            TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION,
             null,
             null
     );
@@ -206,7 +206,7 @@ public class ViewTimeTable extends AppCompatActivity {
                 TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME
         };
         String selection =TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION + " = ? AND " + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER + " = ? ";
-        String[] selectionArgs = {selectCourse_item1, selectSemester_item3};
+        String[] selectionArgs = {selectSession_item1, selectSemester_item3};
 
         timeTabledbHelper.getReadableDatabase();
         List<Table> tableList = new ArrayList<>();
@@ -219,7 +219,7 @@ public class ViewTimeTable extends AppCompatActivity {
                 selectionArgs,
                 null,
                 null,
-                null
+                TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE + " DESC"
         );
         if (cursor.moveToFirst()) {
             do {
@@ -387,7 +387,7 @@ public class ViewTimeTable extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(), "pdf Saved to Phone Download Storage", Toast.LENGTH_SHORT).show();
 //
 //    }
-public void createpdf() throws FileNotFoundException {
+public  void createpdf() throws FileNotFoundException {
     //ActivityCompat.requestPermissions(ViewTimeTable, new String[]{READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
 ////////////////////////////////////////////////////////////
 
@@ -403,7 +403,7 @@ public void createpdf() throws FileNotFoundException {
             TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION
     };
     String selection = TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION + " = ? AND " + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER + " = ? ";
-    String[] selectionArgs = {selectCourse_item1, selectSemester_item3};
+    String[] selectionArgs = {selectSession_item1, selectSemester_item3};
 
     timeTabledbHelper.getReadableDatabase();
     Cursor cursor = db.query(
@@ -411,9 +411,9 @@ public void createpdf() throws FileNotFoundException {
             Projection,
             selection,
             selectionArgs,
-            TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE,
             null,
-            null
+            null,
+            TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE + " ASC"
     );
 
 
@@ -439,7 +439,6 @@ public void createpdf() throws FileNotFoundException {
 //    String session = cursor.getString(5);
 //    String semester = cursor.getString(6);
     if (cursor.moveToFirst()) {
-
        do{
         int id = Integer.parseInt(cursor.getString(0));
         String date = cursor.getString(1);
@@ -452,11 +451,14 @@ public void createpdf() throws FileNotFoundException {
         table.addCell(new Cell().add(new Paragraph(venue)));
         table.addCell(new Paragraph(time));
         table.addCell("60");
-    }while (cursor.moveToNext());
+
+           cursor.moveToNext();
+
+    }while (!cursor.isAfterLast());
 
 
         String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        file = new File(pdfPath, "session00" + " "+ "semester2" + " " + "timetable.pdf");
+        file = new File(pdfPath, "selectSession_item1" + " "+ "selectSemester_item3" + " " + "timetable.pdf");
         OutputStream outputStream = new FileOutputStream(file);
 
 
@@ -472,7 +474,7 @@ public void createpdf() throws FileNotFoundException {
         document.add(table);
         cursor.close();
         document.close();
-        Toast.makeText(getApplicationContext(), "it workedddddddddddddddd " , Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Saved to " + pdfPath , Toast.LENGTH_SHORT).show();
     }
 
 

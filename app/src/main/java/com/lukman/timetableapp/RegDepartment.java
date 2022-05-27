@@ -19,7 +19,7 @@ import com.lukman.timetableapp.data.TImeTableContract;
 import com.lukman.timetableapp.data.TimeTabledbHelper;
 
 public class RegDepartment extends AppCompatActivity {
-    public static final String LOG_TAG = Register.class.getSimpleName();
+    public static final String LOG_TAG = RegDepartment.class.getSimpleName();
     public TextInputEditText dName, cCode, cUnit, cNOS;
     public TextInputLayout layout_DName, layout_code, layout_unit, layout_Nos;
     public Button materialButton;

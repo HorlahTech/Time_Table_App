@@ -7,8 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -179,14 +177,14 @@ public class ExamSchedule extends AppCompatActivity {
 //        } else if (!validate(semester_item3, exam_semester, layoutexamtime)) {
 //            return;
 //        }
-    Toast.makeText(ExamSchedule.this, "values are" + values, Toast.LENGTH_LONG).show();
-    values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, fExamDay);
+    values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE, cDate);
     values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME, time_item4);
     values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE, venue_item2);
     values.put(TImeTableContract.ExamScheduleEntry.COLUMN_COURSE, course_item1);
     values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SEMESTER, semester_item3);
     e_year = exam_year.getText().toString();
     values.put(TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_SESSION, e_year);
+    Toast.makeText(ExamSchedule.this, "Submitted" + values, Toast.LENGTH_LONG).show();
     long newRowId = db.insert(TImeTableContract.ExamScheduleEntry.TABLE_NAME, null, values);
     Log.v("ExamSchedule", "New RoW Id " + newRowId);
 

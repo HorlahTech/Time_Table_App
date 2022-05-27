@@ -47,7 +47,7 @@ public class TimeTabledbHelper extends SQLiteOpenHelper {
 
     String SQL_CREATE_EXAMSCHEDULE_ENTRIES = "CREATE TABLE " + TImeTableContract.ExamScheduleEntry.TABLE_NAME +"("
             + TImeTableContract.ExamScheduleEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE+ " TEXT NOT NULL, "
+            + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_DATE+ " DATE NOT NULL, "
             + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_TIME+ " TEXT NOT NULL, "
             + TImeTableContract.ExamScheduleEntry.COLUMN_COURSE+ " TEXT NOT NULL, "
             + TImeTableContract.ExamScheduleEntry.COLUMN_EXAM_VENUE+ " TEXT NOT NULL, "

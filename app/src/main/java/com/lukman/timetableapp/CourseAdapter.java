@@ -85,25 +85,29 @@ public class CourseAdapter extends ArrayAdapter<CourseData> {
             @Override
             public void onClick(View view) {
         if (linear_id_noofstd.getVisibility() == View.GONE && linear_id_unit.getVisibility() == View.VISIBLE){
-                Intent i = new Intent(view.getContext(), EditVenue.class);
-                i.putExtra("id",  currentWord.getId() );
-                i.putExtra("course title", title.getText().toString() +" "+  currentWord.getId() );
-                i.putExtra("course code", code.getText().toString());
-                i.putExtra("course unit", unit.getText().toString());
-                i.putExtra("course numberOfStudent", noofstd.getText().toString());
-                view.getContext().startActivity(i);
+                Intent venue = new Intent(view.getContext(), EditVenue.class);
+            venue.putExtra("id",  currentWord.getId()+"");
+            venue.putExtra("course title", title.getText().toString());
+            venue.putExtra("course code", code.getText().toString());
+            venue.putExtra("course unit", unit.getText().toString());
+                view.getContext().startActivity(venue);
             }else if (linear_id_noofstd.getVisibility() == View.VISIBLE){
             Intent ij = new Intent(view.getContext(), EditActivity.class);
 
            // ij.putExtra("course id", currentWord.getId() );
-            ij.putExtra("id",   currentWord.getId() );
+            ij.putExtra("id",   Integer.parseInt(currentWord.getId()+"") );
             ij.putExtra("course title", title.getText().toString() +" "+  currentWord.getId() );
             ij.putExtra("course code", code.getText().toString());
             ij.putExtra("course unit", unit.getText().toString());
             ij.putExtra("course numberOfStudent", noofstd.getText().toString());
             view.getContext().startActivity(ij);
-            }else if (!currentWord.checkcode()){
+            }else if (linear_id_noofstd.getVisibility() == View.GONE && linear_id_unit.getVisibility() == View.GONE){
+            Intent dept = new Intent(view.getContext(), EditDepartment.class);
 
+            // ij.putExtra("course id", currentWord.getId() );
+            dept.putExtra("id",   Integer.parseInt(currentWord.getId()+"") );
+            dept.putExtra("course title", title.getText().toString() +" "+  currentWord.getId());
+            view.getContext().startActivity(dept);
         }
             }
         });
@@ -122,7 +126,7 @@ public class CourseAdapter extends ArrayAdapter<CourseData> {
         SQLiteDatabase db = timeTabledbHelper.getWritableDatabase();
 
         long newRowId = db.delete(TImeTableContract.CourseEntry.TABLE_NAME,  "_id = ?", new String[currentWord.getId()]);
-        Log.v("Register", "New RoW Id  " +newRowId );
+       // Log.v("Register", "New RoW Id  " +newRowId );
 
 
     }

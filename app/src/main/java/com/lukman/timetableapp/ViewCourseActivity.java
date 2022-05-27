@@ -16,23 +16,26 @@ import com.lukman.timetableapp.data.TimeTabledbHelper;
 import java.util.ArrayList;
 
 public class ViewCourseActivity extends AppCompatActivity {
-
+    ListView recyclerView;
+    CourseAdapter adapter;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_view_course);
-    ListView recyclerView = findViewById(R.id.recycler);
+     recyclerView = findViewById(R.id.recycler);
     //recyclerView.setLayoutManager( new LinearLayoutManager(this));
     // recyclerView.setHasFixedSize(true);
 
 
     ArrayList<CourseData> courseData = displayCourseData();
     if (courseData.size() > 0) {
-        CourseAdapter Adapter = new CourseAdapter(this, courseData);
+         adapter = new CourseAdapter(this, courseData);
+         adapter.notifyDataSetChanged();
 //            CourseDataAdapter courseDataAdapter = new CourseDataAdapter(courseData, this);
 //            recyclerView.setAdapter(courseDataAdapter);
-        recyclerView.setAdapter( Adapter);
+        recyclerView.setAdapter( adapter);
+        recyclerView.invalidateViews();
     } else {
         Toast.makeText(this, "Empty", Toast.LENGTH_LONG).show();
     }
@@ -40,7 +43,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 private ArrayList<CourseData> displayCourseData() {
-    int id;
+
 
     TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
     SQLiteDatabase db = timeTabledbHelper.getReadableDatabase();
@@ -61,20 +64,44 @@ private ArrayList<CourseData> displayCourseData() {
             null,
             null,
             null,
-            null
+            TImeTableContract.CourseEntry._ID + " ASC"
     );
     if (cursor.moveToFirst()) {
         do {
-            id = Integer.parseInt(cursor.getString(0));
+            int id = Integer.parseInt(cursor.getString(0));
             String c_Title = cursor.getString(1);
             String c_Code = cursor.getString(2);
             String c_Unit = cursor.getString(3);
             String c_NoOfStd = cursor.getString(4);
             saveArrayData.add(new CourseData(id, c_Title, c_Code, c_Unit, c_NoOfStd));
-            cursor.moveToNext();
-        } while (!cursor.isAfterLast());
+
+        } while (cursor.moveToNext());
     }
     cursor.close();
     return saveArrayData;
 }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recyclerView = findViewById(R.id.recycler);
+        //recyclerView.setLayoutManager( new LinearLayoutManager(this));
+        // recyclerView.setHasFixedSize(true);
+
+
+        ArrayList<CourseData> courseData = displayCourseData();
+        if (courseData.size() > 0) {
+            adapter = new CourseAdapter(this, courseData);
+            adapter.notifyDataSetChanged();
+//            CourseDataAdapter courseDataAdapter = new CourseDataAdapter(courseData, this);
+//            recyclerView.setAdapter(courseDataAdapter);
+            recyclerView.setAdapter( adapter);
+            recyclerView.invalidateViews();
+        } else {
+            Toast.makeText(this, "Empty", Toast.LENGTH_LONG).show();
+        }
+
+        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.lukman.timetableapp;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.lukman.timetableapp.data.TImeTableContract;
+import com.lukman.timetableapp.data.TimeTabledbHelper;
 
 public class EditVenue extends AppCompatActivity {
     public static final String LOG_TAG = EditVenue.class.getSimpleName();
@@ -21,13 +25,13 @@ public class EditVenue extends AppCompatActivity {
     public TextInputLayout layout_vname, layout_vlocation, layout_vdesc;
     public Button venueButton;
     String venueNameString, venueLocationString,venueDescString;
-
+    String v__IdData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_venue);
         Intent ii = getIntent();///////////intent to get value from edit button
-        String v__IdData = ii.getStringExtra("id");
+         v__IdData = ii.getStringExtra("id");
         String v__NameData = ii.getStringExtra("course title");
         String v__LocationData = ii.getStringExtra("course code");
         String v__DescriptionData = ii.getStringExtra("course unit");
@@ -58,7 +62,7 @@ public class EditVenue extends AppCompatActivity {
 
 
                 submitForm();
-
+                finish();
             }
         });
     }
@@ -96,7 +100,21 @@ public class EditVenue extends AppCompatActivity {
         }else if(!validate(venueDescString, vDesc, layout_vdesc)){
             return;
         }
+        updateVenue();
         Toast.makeText(getApplicationContext(), venueNameString + "\n" + venueLocationString, Toast.LENGTH_LONG).show();
+
+
+    }
+    private void updateVenue() {
+        TimeTabledbHelper timeTabledbHelper = new TimeTabledbHelper(this);
+        SQLiteDatabase db = timeTabledbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TImeTableContract.VenueEntry.COLUMN_VENUE_NAME, venueNameString);
+        values.put(TImeTableContract.VenueEntry.COLUMN_VENUE_LOCATION, venueLocationString);
+        values.put(TImeTableContract.VenueEntry.COLUMN_VENUE_DESC, venueDescString);
+        long newRowId = db.update(TImeTableContract.VenueEntry.TABLE_NAME, values, "_id = ?",
+                new String[]{v__IdData});
+        Log.v("Register", "New RoW Id  " +v__IdData);
 
 
     }

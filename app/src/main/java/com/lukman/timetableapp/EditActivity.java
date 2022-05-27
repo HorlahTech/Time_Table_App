@@ -26,18 +26,19 @@ public class EditActivity extends AppCompatActivity {
     public TextInputLayout layout_title, layout_code, layout_unit, layout_Nos;
     public Button materialButton;
     String courseTitleString, courseCodeString,courseUnitString, courseNOSString;
-    int c__IdData;
+    String c__IdData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         Intent ii = getIntent();///////////intent to get value from edit button
-        String c__IdData = ii.getStringExtra("id");
+         c__IdData = ii.getStringExtra("id");
         String c__TitleData = ii.getStringExtra("course title");
         String c__CodeData = ii.getStringExtra("course code");
         String c__UnitData = ii.getStringExtra("course unit");
         String c__NumberOfData = ii.getStringExtra("course numberOfStudent");
+        Log.v("Register", "New RoW Id  " +c__IdData);
 
         //////////////////////////////////////////
         layout_title = findViewById(R.id.layoutctitle);
@@ -72,6 +73,7 @@ public class EditActivity extends AppCompatActivity {
 
 
                 submitForm();
+                finish();
 
             }
         });
@@ -123,9 +125,9 @@ public class EditActivity extends AppCompatActivity {
         values.put(TImeTableContract.CourseEntry.COLUMN_COURSE_UNIT, courseUnitString);
         values.put(TImeTableContract.CourseEntry.COLUMN_NO_OF_STUDENT, courseNOSString);
         long newRowId = db.update(TImeTableContract.CourseEntry.TABLE_NAME, values, "_id = ?",
-                new String[]{String.valueOf(c__IdData)});
-        Log.v("Register", "New RoW Id  " +newRowId );
-        finish();
+                new String[]{c__IdData});
+        Log.v("Register", "New RoW Id  " +c__IdData);
+
 
     }
 }

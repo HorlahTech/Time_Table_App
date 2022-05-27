@@ -31,21 +31,22 @@ import java.util.ArrayList;
 
 
 public class ViewVenue extends AppCompatActivity {
-
+    ListView listView;
+    CourseAdapter adapter;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_view_course);
-    ListView listView = findViewById(R.id.recycler);
+     listView = findViewById(R.id.recycler);
 //        listView.setLayoutManager( new LinearLayoutManager(this));
 //        listView.setHasFixedSize(true);
 
 
     ArrayList<CourseData> courseData = displayVenueData();
     if (courseData.size() > 0) {
-        CourseAdapter Adapter = new CourseAdapter(this, courseData);
-        listView.setAdapter( Adapter);
+         adapter = new CourseAdapter(this, courseData);
+        listView.setAdapter( adapter);
     } else {
         Toast.makeText(this, "Empty", Toast.LENGTH_SHORT).show();
     }
@@ -80,11 +81,33 @@ private ArrayList<CourseData> displayVenueData() {
             String v_Location = cursor.getString(2);
             String v_Desc = cursor.getString(3);
 
-            saveArrayData.add(new CourseData(id,v_Name, v_Location, v_Desc));
+            saveArrayData.add(new CourseData(id, v_Name, v_Location, v_Desc));
             cursor.moveToNext();
         } while (!cursor.isAfterLast());
     }
     cursor.close();
     return saveArrayData;
 }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listView = findViewById(R.id.recycler);
+        //recyclerView.setLayoutManager( new LinearLayoutManager(this));
+        // recyclerView.setHasFixedSize(true);
+
+
+        ArrayList<CourseData> courseData = displayVenueData();
+        if (courseData.size() > 0) {
+            adapter = new CourseAdapter(this, courseData);
+            adapter.notifyDataSetChanged();
+//            CourseDataAdapter courseDataAdapter = new CourseDataAdapter(courseData, this);
+//            recyclerView.setAdapter(courseDataAdapter);
+            listView.setAdapter( adapter);
+            listView.invalidateViews();
+        } else {
+            Toast.makeText(this, "Empty", Toast.LENGTH_LONG).show();
+        }
+
+        Toast.makeText(getApplicationContext(), "onResume", Toast.LENGTH_SHORT).show();
+    }
 }
