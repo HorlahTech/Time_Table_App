@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("MainActivity", "aasdfgg");
         expandableListView = findViewById(R.id.expandable_listView);
 //        expandableListView.setAdapter(adapter);
         SendIntentTask sendIntentTask = new SendIntentTask();
