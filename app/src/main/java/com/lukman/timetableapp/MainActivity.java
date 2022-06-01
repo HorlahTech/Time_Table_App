@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             //add Time child
             ArrayList<String> mTime = new ArrayList<>();
             mTime.add("Set Time");
-            mTime.add("Edit Time");
+            mTime.add("View Time");
             listChild.put("Time Schedule", mTime);
             //add course child
             ArrayList<String> mExamScheduling = new ArrayList<>();
@@ -177,40 +177,43 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
                     String sChild = String.valueOf(adapter.getChild(i, i1));
-                    if (sChild == "Reg Course"){
+                    if (sChild == "Reg Course") {
                         Intent regIntent = new Intent(MainActivity.this, Register.class);
                         startActivity(regIntent);
 
 
-                    }else if(sChild =="Edit Course"){
+                    } else if (sChild == "Edit Course") {
                         Intent regIntent = new Intent(MainActivity.this, EditActivity.class);
                         startActivity(regIntent);
-                    }else if(sChild == "Reg Department"){
+                    } else if (sChild == "Reg Department") {
                         Intent regIntent = new Intent(MainActivity.this, RegDepartment.class);
                         startActivity(regIntent);
-                    }else if(sChild == "View Department"){
+                    } else if (sChild == "View Department") {
                         Intent regIntent = new Intent(MainActivity.this, ViewDepartment.class);
                         startActivity(regIntent);
-                    }else if (sChild =="Reg Venue"){
+                    } else if (sChild == "Reg Venue") {
                         Intent regIntent = new Intent(MainActivity.this, ExamVenue.class);
                         startActivity(regIntent);
-                    }else if (sChild =="Edit Venue"){
+                    } else if (sChild == "Edit Venue") {
                         Intent regIntent = new Intent(MainActivity.this, EditVenue.class);
                         startActivity(regIntent);
-                    }else if (sChild =="View Venue"){
+                    } else if (sChild == "View Venue") {
                         Intent regIntent = new Intent(MainActivity.this, ViewVenue.class);
                         startActivity(regIntent);
-                    }else if (sChild == "Set Time"){
+                    } else if (sChild == "Set Time") {
                         Intent regIntent = new Intent(MainActivity.this, SetExamTime.class);
                         startActivity(regIntent);
-                    } else if (sChild == "View Course"){
+                    } else if (sChild == "View Course") {
                         Intent regIntent = new Intent(MainActivity.this, ViewCourseActivity.class);
                         startActivity(regIntent);
-                    }else if (sChild == "Set Exam Time Table"){
-                        Intent regIntent = new Intent(MainActivity.this,ExamSchedule.class);
+                    } else if (sChild == "Set Exam Time Table") {
+                        Intent regIntent = new Intent(MainActivity.this, ExamSchedule.class);
                         startActivity(regIntent);
-                    }else if (sChild == "View Exam Time Table"){
-                        Intent regIntent = new Intent(MainActivity.this,ViewTimeTable.class);
+                    } else if (sChild == "View Exam Time Table") {
+                        Intent regIntent = new Intent(MainActivity.this, ViewTimeTable.class);
+                        startActivity(regIntent);
+                    } else if (sChild == "View Time") {
+                        Intent regIntent = new Intent(MainActivity.this, ViewExamTime.class);
                         startActivity(regIntent);
                     }
                     return true;

@@ -7,8 +7,10 @@
         <entry key="..\:/Users/Horlah_pc/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_expandable_list_item_2.xml" value="0.184375" />
         <entry key="..\:/Users/Horlah_pc/AppData/Local/Android/Sdk/platforms/android-32/data/res/layout/simple_selectable_list_item.xml" value="0.1" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/more_icon.xml" value="0.1225" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable-anydpi/timeicon.xml" value="0.22205128205128205" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/drawable/shape.xml" value="0.22205128205128205" />
+        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout-land/each_time.xml" value="0.2796875" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout-v28/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_exam_schedule.xml" value="0.25" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/activity_exam_venue.xml" value="0.25" />
@@ -21,12 +23,14 @@
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/course_expandable.xml" value="0.12771739130434784" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/course_expandable_item.xml" value="0.1" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/dropdown_list.xml" value="0.10182370820668693" />
+        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/each_time.xml" value="0.25" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/expandable_list_group.xml" value="0.12771739130434784" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/list_courses.xml" value="0.33" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/register.xml" value="0.1" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/table_list_item.xml" value="0.12817028985507245" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/layout/time_layout.xml" value="0.25" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/menu/download_pdf.xml" value="0.1935185185185185" />
+        <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/menu/popup_menu.xml" value="0.1" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22205128205128205" />
         <entry key="..\:/Users/Horlah_pc/TimeTableApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22205128205128205" />
       </map>
